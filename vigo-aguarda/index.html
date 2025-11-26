@@ -62,32 +62,6 @@
             line-height: 1.6;
         }
         
-        /* Quick Stats */
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            padding: 20px;
-            background: white;
-            border-bottom: 1px solid #e0e0e0;
-            flex-wrap: wrap;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #1a5276;
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
         /* Main Content */
         .container {
             max-width: 900px;
@@ -458,14 +432,6 @@
                 padding: 10px 15px;
             }
             
-            .stats {
-                gap: 15px;
-            }
-            
-            .stat-value {
-                font-size: 1.2rem;
-            }
-            
             .gallery {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -493,74 +459,48 @@
         <div class="date">📅 Субота 29 листопада, старт о 10:00</div>
     </div>
     
-    <div class="stats">
-        <div class="stat">
-            <div class="stat-value">~130 км</div>
-            <div class="stat-label">Загалом</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value">~4 км</div>
-            <div class="stat-label">Пішки</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value">5 зупинок</div>
-            <div class="stat-label">Місця</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value">10:00–20:15</div>
-            <div class="stat-label">Час</div>
-        </div>
-    </div>
     
     <div class="container">
         
         <!-- Schedule -->
         <div class="schedule">
             <h2>📅 Приблизний максимальний розклад</h2>
-            <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">Без походу по млинам буде до 18:30 рівно.</p>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">З млинами  - це досить насичено (але вартує того), без млинів - теж день але на релаксі</p>
             <table>
                 <thead>
                     <tr>
                         <th>Час</th>
                         <th>Зупинка</th>
-                        <th>Км</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>No, I still see it in the file also. 
                     <tr>
                         <td><strong>10:00</strong></td>
                         <td><strong style="color: #1a5276;">(1)</strong> 🚗 Виїзд з Vigo</td>
-                        <td class="distance">—</td>
                     </tr>
                     <tr>
                         <td><strong>10:40–11:40</strong></td>
                         <td><strong style="color: #1a5276;">(2)</strong> 🏰 Морський замок, крута територія, можна полазити по мурам, на території крутий готель і гриби</td>
-                        <td class="distance">25</td>
                     </tr>
                     <tr>
                         <td><strong>12:15–12:30</strong></td>
                         <td><strong style="color: #1a5276;">(3)</strong> 🗼 Маяк, як у фільмах жахів з вітрюганом і оце все.. + трохи далі старовинний Монастир з виходом на море </td>
-                        <td class="distance">35</td>
                     </tr>
                     <tr>
                         <td><strong>13:35–15:05</strong></td>
                         <td><strong style="color: #1a5276;">(4)</strong> 🌲 Самий важчий етап, 4.5 км по горам між старовинними млинами, типу Хоббітшир коли всі давно пішли кудись</td>
-                        <td class="distance">45</td>
                     </tr>
                     <tr>
                         <td><strong>16:10–17:40</strong></td>
                         <td><strong style="color: #1a5276;">(5)</strong> 🍽️ A Guarda - останнє іспанське селище, дуууже крута локація для фото з різнокольоровими будиночками, можна ще на високу гору заїхати прямо машиною і побачити Португалію, річку, місце куди вивозили неслухняних діток..</td>
-                        <td class="distance">55</td>
                     </tr>
                     <tr>
                         <td><strong>18:35–19:05</strong></td>
                         <td><strong style="color: #1a5276;">(6)</strong> 🌅 Сікрєт плейс - реально найкраща смотрова на шляху Сантьяго з ларьочком (сидиш, типу ти теж пілігрім, бо там виключно пілігріми) </td>
-                        <td class="distance">60</td>
                     </tr>
                     <tr>
                         <td><strong>19:15–~20:15</strong></td>
                         <td>🏠 Година їзди додому і спати</td>
-                        <td class="distance">~130</td>
                     </tr>
                 </tbody>
             </table>
