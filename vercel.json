@@ -1,15 +1,9 @@
 {
-  "buildCommand": "",
-  "installCommand": "",
-  "outputDirectory": ".",
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/vigo-aguarda",
-      "destination": "/vigo-aguarda/index.html"
-    },
-    {
-      "source": "/vigo-aguarda/",
-      "destination": "/vigo-aguarda/index.html"
+      "src": "**/*",
+      "use": "@vercel/static"
     }
   ]
 }
