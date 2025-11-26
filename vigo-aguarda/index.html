@@ -413,6 +413,15 @@
             margin-bottom: 10px;
         }
         
+        /* Map */
+        #map {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
         /* Mobile */
         @media (max-width: 600px) {
             .header h1 {
@@ -533,6 +542,10 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        
+        <!-- Map -->
+        <div id="map"></div>
         
         <!-- Info Box -->
         <div class="info-box">
@@ -545,5 +558,51 @@
         
         
     </div>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUU_iO1-tl4PVWNFPIghw_SyIde5Xf7vI"></script>
+    <script>
+        const stops = [
+            { name: "🚗 Vigo (Старт)", lat: 42.2406, lng: -8.7281 },
+            { name: "🏰 Baiona (Замок)", lat: 42.1197, lng: -8.8339 },
+            { name: "🗼⛪ Oia (Маяк + Монастир)", lat: 42.0714, lng: -8.9539 },
+            { name: "🌲 O Rosal (Млини)", lat: 42.1283, lng: -8.8706 },
+            { name: "🍽️ A Guarda", lat: 42.1767, lng: -8.8752 },
+            { name: "🌅 Сікрєт плейс", lat: 42.1600, lng: -8.8900 }
+        ];
+
+        const map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: { lat: 42.1500, lng: -8.8500 }
+        });
+
+        const markers = [];
+        stops.forEach((stop, index) => {
+            const marker = new google.maps.Marker({
+                position: { lat: stop.lat, lng: stop.lng },
+                map: map,
+                title: stop.name,
+                label: String(index + 1)
+            });
+            markers.push(marker);
+
+            const infoWindow = new google.maps.InfoWindow({
+                content: stop.name
+            });
+
+            marker.addListener('click', () => {
+                infoWindow.open(map, marker);
+            });
+        });
+
+        const polylineCoords = stops.map(stop => ({ lat: stop.lat, lng: stop.lng }));
+        const polyline = new google.maps.Polyline({
+            path: polylineCoords,
+            geodesic: true,
+            strokeColor: '#1a5276',
+            strokeOpacity: 0.7,
+            strokeWeight: 3,
+            map: map
+        });
+    </script>
 </body>
 </html>
