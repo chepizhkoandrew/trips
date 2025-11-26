@@ -604,39 +604,43 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUU_iO1-tl4PVWNFPIghw_SyIde5Xf7vI&libraries=places"></script>
     <script>
         const stops = [
-            { name: "🚗 Vigo (Старт)", lat: 42.2314, lng: -8.7124, searchQuery: "Vigo Spain harbor" },
-            { name: "🏰 Baiona (Замок)", lat: 42.1250, lng: -8.8497, searchQuery: "Baiona Castle Parador" },
-            { name: "🗼⛪ Oia (Маяк + Монастир)", lat: 42.0000, lng: -8.8667, searchQuery: "Oia lighthouse monastery" },
-            { name: "🌲 O Rosal (Млини)", lat: 41.9356, lng: -8.8250, searchQuery: "O Rosal mills forest" },
-            { name: "🍽️ A Guarda", lat: 41.9017, lng: -8.8753, searchQuery: "A Guarda Spain" },
-            { name: "🌅 Сікрєт плейс", lat: 42.0500, lng: -8.8900, searchQuery: "Santiago trail viewpoint" }
+            { name: "🚗 Vigo (Старт)", lat: 42.2314, lng: -8.7124, searchName: "Vigo Spain" },
+            { name: "🏰 Baiona (Замок)", lat: 42.1250, lng: -8.8497, searchName: "Parador de Baiona" },
+            { name: "🗼⛪ Oia (Маяк + Монастир)", lat: 42.0000, lng: -8.8667, searchName: "Faro de Oia" },
+            { name: "🌲 O Rosal (Млини)", lat: 41.9356, lng: -8.8250, searchName: "O Rosal" },
+            { name: "🍽️ A Guarda", lat: 41.9017, lng: -8.8753, searchName: "A Guarda" },
+            { name: "🌅 Сікрєт плейс", lat: 42.0500, lng: -8.8900 }
         ];
 
         function loadPlacePhotos() {
             const placesService = new google.maps.places.PlacesService(document.createElement('div'));
+            const altTexts = ['Vigo', 'Baiona Castle', 'Oia Lighthouse', 'O Rosal Mills', 'A Guarda', 'Viewpoint'];
             
             stops.forEach((stop, index) => {
-                const request = {
-                    location: { lat: stop.lat, lng: stop.lng },
-                    radius: 500,
-                    type: 'point_of_interest'
-                };
-                
-                placesService.nearbySearch(request, (results, status) => {
-                    if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
-                        const place = results[0];
-                        if (place.photos && place.photos.length > 0) {
-                            const photoUrl = place.photos[0].getUrl({ maxWidth: 600, maxHeight: 400 });
-                            const imgElement = document.querySelector(`img[alt="${['Vigo', 'Baiona Castle', 'Oia Lighthouse', 'O Rosal Mills', 'A Guarda', 'Viewpoint'][index]}"]`);
-                            if (imgElement) {
-                                imgElement.src = photoUrl;
-                                imgElement.onerror = function() {
-                                    this.src = 'https://via.placeholder.com/600x400?text=No+Image+Available';
-                                };
+                if (stop.searchName) {
+                    const request = {
+                        query: stop.searchName,
+                        location: { lat: stop.lat, lng: stop.lng },
+                        radius: 1500
+                    };
+                    
+                    placesService.textSearch(request, (results, status) => {
+                        if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+                            const place = results[0];
+                            if (place.place_id) {
+                                placesService.getDetails({ placeId: place.place_id, fields: ['photos'] }, (placeDetails, status2) => {
+                                    if (status2 === google.maps.places.PlacesServiceStatus.OK && placeDetails.photos && placeDetails.photos.length > 0) {
+                                        const photoUrl = placeDetails.photos[0].getUrl({ maxWidth: 600, maxHeight: 400 });
+                                        const imgElement = document.querySelector(`img[alt="${altTexts[index]}"]`);
+                                        if (imgElement) {
+                                            imgElement.src = photoUrl;
+                                        }
+                                    }
+                                });
                             }
                         }
-                    }
-                });
+                    });
+                }
             });
         }
         
