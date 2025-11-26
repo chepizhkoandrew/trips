@@ -422,6 +422,31 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
+        /* CTA Button */
+        .cta-button {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #25d366 0%, #1fa752 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+            text-decoration: none;
+            color: white;
+        }
+        
         /* Mobile */
         @media (max-width: 600px) {
             .header h1 {
@@ -466,9 +491,6 @@
         <h1>🌊 Costa Atlántica</h1>
         <p class="subtitle">Одноденна подорож узбережжям Галісії</p>
         <div class="date">📅 Субота 29 листопада, старт о 10:00</div>
-        <div class="route">
-            <strong>МАРШРУТ:</strong> Vigo → Baiona (старовинний замок) → Oia (маяк + монастир) → O Rosal (похід до старих млинів у лісі ~4 км) → A Guarda (дуже гарне містечко) → ??? (секретне кафе на заході сонця) → Vigo
-        </div>
     </div>
     
     <div class="stats">
@@ -489,6 +511,8 @@
             <div class="stat-label">Час</div>
         </div>
     </div>
+    
+    <a href="https://wa.me/34611371682" class="cta-button">💬 Цікаво!</a>
     
     <div class="container">
         
