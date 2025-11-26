@@ -594,14 +594,31 @@
             });
         });
 
-        const polylineCoords = stops.map(stop => ({ lat: stop.lat, lng: stop.lng }));
-        const polyline = new google.maps.Polyline({
-            path: polylineCoords,
-            geodesic: true,
-            strokeColor: '#1a5276',
-            strokeOpacity: 0.7,
-            strokeWeight: 3,
-            map: map
+        const directionsService = new google.maps.DirectionsService();
+        const directionsRenderer = new google.maps.DirectionsRenderer({
+            map: map,
+            polylineOptions: {
+                strokeColor: '#1a5276',
+                strokeOpacity: 0.7,
+                strokeWeight: 3
+            },
+            suppressMarkers: true
+        });
+
+        const waypoints = stops.slice(1, -1).map(stop => ({
+            location: { lat: stop.lat, lng: stop.lng },
+            stopover: true
+        }));
+
+        directionsService.route({
+            origin: stops[0],
+            destination: stops[stops.length - 1],
+            waypoints: waypoints,
+            travelMode: 'DRIVING'
+        }, function(response, status) {
+            if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+            }
         });
     </script>
 </body>
